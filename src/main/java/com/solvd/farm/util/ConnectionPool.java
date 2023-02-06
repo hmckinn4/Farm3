@@ -1,4 +1,4 @@
-package com.solvd.farm.DAO.jdbcimpl;
+package com.solvd.farm.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -37,7 +37,7 @@ public static ConnectionPool getInstance() {
         return instance;
         }
 
-public Connection getConnection() {
+public synchronized Connection getConnection() {
         if (connections.isEmpty()) {
         try {
         Connection connection = DriverManager.getConnection(url, username, password);
@@ -49,7 +49,7 @@ public Connection getConnection() {
         return connections.remove(connections.size() - 1);
         }
 
-public void releaseConnection(Connection connection) {
+public synchronized void releaseConnection(Connection connection) {
         connections.add(connection);
         }
 }

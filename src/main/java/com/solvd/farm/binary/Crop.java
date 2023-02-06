@@ -1,25 +1,16 @@
-package com.solvd.farm.binary.representations;
+package com.solvd.farm.binary;
 import java.util.Objects;
 
-public class Crop {
-    private int id;
+public class Crop extends BaseEntity {
     private String name;
     private String variety;
     private String growingSeason;
 
-    public Crop() {
-        this.id = id;
+    public Crop(long id, String name, String variety, String growingSeason) {
+        super(id);
         this.name = name;
         this.variety = variety;
         this.growingSeason = growingSeason;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -51,7 +42,7 @@ public class Crop {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Crop crop = (Crop) o;
-        return id == crop.id &&
+        return super.getId() == super.getId() &&
                 Objects.equals(name, crop.name) &&
                 Objects.equals(variety, crop.variety) &&
                 Objects.equals(growingSeason, crop.growingSeason);
@@ -59,13 +50,13 @@ public class Crop {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, variety, growingSeason);
+        return Objects.hash(super.getId(), name, variety, growingSeason);
     }
 
     @Override
     public String toString() {
         return "Crop{" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", name='" + name + '\'' +
                 ", variety='" + variety + '\'' +
                 ", growingSeason='" + growingSeason + '\'' +

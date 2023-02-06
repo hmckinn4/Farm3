@@ -1,6 +1,4 @@
-package com.solvd.farm.binary.representations;
-
-import com.solvd.farm.util.DBConnection;
+package com.solvd.farm.binary;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

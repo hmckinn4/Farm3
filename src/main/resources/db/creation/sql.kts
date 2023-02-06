@@ -1,9 +1,27 @@
-
 -- create the database
 CREATE DATABASE FarmDB;
 
 -- use the database
 USE FarmDB;
+
+- create the Animal table
+        CREATE TABLE Animal (
+        Animal_ID INT NOT NULL AUTO_INCREMENT,
+        Animal_Name VARCHAR(255) NOT NULL,
+        Animal_Type VARCHAR(255) NOT NULL,
+        Animal_Breed VARCHAR(255) NOT NULL,
+        PRIMARY KEY (Animal_ID)
+);
+
+
+-- create the Barn table
+        CREATE TABLE Barn (
+        Barn_ID INT NOT NULL AUTO_INCREMENT,
+        Barn_Name VARCHAR(255) NOT NULL,
+        Barn_Location VARCHAR(255) NOT NULL,
+        PRIMARY KEY (Barn_ID),
+        FOREIGN KEY (Farm_ID) REFERENCES Farm(Farm_ID)
+);
 
 -- create the Farm table
         CREATE TABLE Farm (
@@ -62,7 +80,6 @@ FOREIGN KEY (Crop_ID) REFERENCES Crop(Crop_ID)
         Equipment_ID INT NOT NULL AUTO_INCREMENT,
         Equipment_Name VARCHAR(255) NOT NULL,
         Equipment_Type VARCHAR(255) NOT NULL,
-        Equipment_Serial VARCHAR(255) NOT NULL,
         PRIMARY KEY (Equipment_ID)
 );
 
@@ -74,8 +91,7 @@ FOREIGN KEY (Crop_ID) REFERENCES Crop(Crop_ID)
         Task_Date DATE NOT NULL,
         Task_Status VARCHAR(20) NOT NULL,
         PRIMARY KEY (Task_ID, Equipment_ID),
-FOREIGN KEY (Equipment_ID) REFERENCES
-        Equipment(Equipment_ID)
+        FOREIGN KEY (Equipment_ID) REFERENCES Equipment(Equipment_ID)
 );
 
 -- create the Task table
@@ -139,6 +155,4 @@ FOREIGN KEY (Supplier_ID) REFERENCES Supplier(Supplier_ID)
 );
 
 
-
-// Path: src/main/resources/db/creation/insert.sql
 
