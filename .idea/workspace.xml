@@ -4,38 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7603b33-4fea-4528-ae24-2f45019ecd64" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/jdbcimpl/AbstractDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Animal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Barn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Equipment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Farm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Field_Crop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Harvest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Supplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/service/CropService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/service/jdbcservicesimpl/CropServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/util/PropertiesUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="e7603b33-4fea-4528-ae24-2f45019ecd64" name="Changes" comment="h">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/FarmDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/jdbcimpl/FarmDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/service/FarmService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/service/jdbcservicesimpl/FarmServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/interfaces/AbstractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/AbstractDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/interfaces/CropDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/CropDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/interfaces/EmployeeDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/interfaces/FarmDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/jdbcimpl/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/util/ConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/jdbcimpl/CropDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/DAO/jdbcimpl/CropDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/representations/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/representations/Crop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Crop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/representations/DBPopulate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/DBPopulate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/util/DBConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/util/MyBatisDaoFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/creation/sql.kts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/creation/sql.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/farm/binary/Animal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +75,14 @@
       <option name="presentableId" value="Default" />
       <updated>1675013217291</updated>
     </task>
+    <task id="LOCAL-00001" summary="h">
+      <created>1675651254727</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675651254727</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +95,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="h" />
+    <option name="LAST_COMMIT_MESSAGE" value="h" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

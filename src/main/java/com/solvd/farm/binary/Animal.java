@@ -8,6 +8,7 @@ public class Animal extends BaseEntity{
     private String breed;
 
 
+
     public Animal(long id, String name, String type, String breed) {
         super(id);
         this.name = name;
