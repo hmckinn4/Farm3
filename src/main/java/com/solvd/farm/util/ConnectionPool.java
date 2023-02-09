@@ -1,10 +1,14 @@
 package com.solvd.farm.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ConnectionPool {
     private static ConnectionPool instance;
@@ -13,19 +17,27 @@ public class ConnectionPool {
     private String url;
     private String username;
     private String password;
+
+    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
+
+
 private ConnectionPool() {
         // initialize variables such as poolSize, url, username, and password based on your database configuration
         poolSize = 10;
-        url = "jdbc:mysql://localhost:3306/FarmDB";
-        username = "root";
-        password = "12345678";
+        DBConfigUtil.getProperty("url");
+        DBConfigUtil.getProperty("username");
+        DBConfigUtil.getProperty("password");
         connections = new ArrayList<>(poolSize);
         for (int i = 0; i < poolSize; i++) {
         try {
+                Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         Connection connection = DriverManager.getConnection(url, username, password);
         connections.add(connection);
         } catch (SQLException e) {
-        e.printStackTrace();
+                e.printStackTrace();
+        } catch (InstantiationException e) {
+        } catch (IllegalAccessException e) {
+        } catch (ClassNotFoundException e) {
         }
         }
         }
@@ -43,7 +55,7 @@ public synchronized Connection getConnection() {
         Connection connection = DriverManager.getConnection(url, username, password);
         return connection;
         } catch (SQLException e) {
-        e.printStackTrace();
+                logger.error("StackTrace", e);
         }
         }
         return connections.remove(connections.size() - 1);

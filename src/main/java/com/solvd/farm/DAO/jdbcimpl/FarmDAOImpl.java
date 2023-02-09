@@ -3,35 +3,33 @@ package com.solvd.farm.DAO.jdbcimpl;
 import com.solvd.farm.DAO.FarmDAO;
 import com.solvd.farm.binary.Farm;
 
-import java.sql.Connection;
 import java.util.List;
 
 public class FarmDAOImpl extends AbstractDAO implements FarmDAO {
-    @Override
-    public List<Farm> getAllCrops() {
-        Connection connection =getConnection();
-
-        releaseConnection(connection);
-        return null;
-    }
 
     @Override
-    public int updateCrop(Farm farm) {
-        return 0;
-    }
+    public boolean create(Farm farm) {
 
-    @Override
-    public int deleteCrop(int id) {
-        return 0;
-    }
-
-    @Override
-    public void create(Farm farm) {
-
+        return false;
     }
 
     @Override
     public Farm getById(long id) {
         return null;
+    }
+
+    @Override
+    public List<Farm> getAll() {
+        return null;
+    }
+
+    @Override
+    public boolean update(Farm farm) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Farm farm) {
+        return false;
     }
 }

@@ -1,8 +1,16 @@
 package com.solvd.farm.DAO;
 
+import java.util.List;
+
 public interface AbstractDAO<T> {
 
-    void create(T t);
+    boolean create(T t);
 
     T getById(long id);
+
+    List<T> getAll();
+
+    boolean update(T t);
+
+    boolean delete(T t);
 }

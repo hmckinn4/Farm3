@@ -25,7 +25,7 @@ public class DBConfigUtil {
 
     }
 
-    public static Properties getProps() {
-        return props;
+    public static String getProperty(String propertyName) {
+        return props.getProperty(propertyName);
     }
 }
