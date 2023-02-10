@@ -14,9 +14,9 @@ public class ConnectionPool {
     private static ConnectionPool instance;
     private List<Connection> connections;
     private int poolSize;
-    private String url;
-    private String username;
-    private String password;
+    private String url = DBConfigUtil.getProperty("url");
+    private String username = DBConfigUtil.getProperty("username");
+    private String password = DBConfigUtil.getProperty("password");
 
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
 

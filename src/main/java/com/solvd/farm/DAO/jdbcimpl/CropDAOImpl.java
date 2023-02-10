@@ -13,9 +13,15 @@ import java.util.List;
 
 public class CropDAOImpl extends AbstractDAO implements CropDAO {
 
-    private static final String SQL_QUERY_CREATE_CROP = "INSERT into crop (name, variety, Growing Season) VALUES (corn, ?, ?)";
+    private static final String SQL_QUERY_CREATE_CROP = "INSERT INTO crop (Crop_Name, crop_variety, crop_Season) VALUES (?,?, ?)";
 
     private static final String SQL_QUERY_GET_CROP_BY_ID = "SELECT * FROM crop WHERE id = ?";
+
+    private static final String SQL_QUERY_GET_ALL_CROPS = "SELECT * FROM crop";
+
+    private static final String SQL_QUERY_UPDATE_CROP = "UPDATE crop SET Crop_Name = ?, crop_variety = ?, crop_Season = ? WHERE id = ?";
+
+    private static final String SQL_QUERY_DELETE_CROP = "DELETE FROM crop WHERE id = ?";
 
     @Override
     public boolean create(Crop crop) {
@@ -23,13 +29,13 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_CREATE_CROP)) {
             connection.setAutoCommit(false);
-            preparedStatement.setString(0, crop.getName());
-            preparedStatement.setString(1, crop.getVariety());
-            preparedStatement.setString(2, crop.getGrowingSeason());
+            preparedStatement.setString(1, crop.getName());
+            preparedStatement.setString(2, crop.getVariety());
+            preparedStatement.setString(3, crop.getGrowingSeason());
             //setting values
-            boolean result = preparedStatement.execute();
+            int result = preparedStatement.executeUpdate();
             connection.commit();
-            return result;
+            return result > 0;
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -41,7 +47,6 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
             releaseConnection(connection);
         }
     }
-
     @Override
     public Crop getById(long id) {
         Connection connection = getConnection();
@@ -49,7 +54,7 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
         ResultSet resultSet = null;
         try {
             preparedStatement = connection.prepareStatement(SQL_QUERY_GET_CROP_BY_ID);
-            preparedStatement.setLong(0, id);
+            preparedStatement.setLong(1, id);
 
             resultSet = preparedStatement.executeQuery();
             List<Crop> crops = new ArrayList<>();
@@ -62,6 +67,11 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
                 crops.add(new Crop(cropId, name, variety, growingSeason));
             }
 
+            if (crops.size() > 0) {
+                return crops.get(0);
+            } else {
+                return null;
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -73,8 +83,8 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
                 throw new RuntimeException(e);
             }
         }
-        return null;
     }
+
 
     @Override
     public List<Crop> getAll() {
@@ -82,7 +92,7 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM crop");
+            preparedStatement = connection.prepareStatement(SQL_QUERY_GET_ALL_CROPS);
             resultSet = preparedStatement.executeQuery();
             List<Crop> crops = new ArrayList<>();
             while (resultSet.next()) {
@@ -111,22 +121,15 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("UPDATE crop SET name = ?, variety = ?, growing_season = ? WHERE crop_id = ?");
-            connection.setAutoCommit(false);
-            preparedStatement.setString(0, crop.getName());
-            preparedStatement.setString(1, crop.getVariety());
-            preparedStatement.setString(2, crop.getGrowingSeason());
-            preparedStatement.setLong(3, crop.getId());
+            preparedStatement = connection.prepareStatement(SQL_QUERY_UPDATE_CROP);
+            preparedStatement.setString(1, crop.getName());
+            preparedStatement.setString(2, crop.getVariety());
+            preparedStatement.setString(3, crop.getGrowingSeason());
+            preparedStatement.setLong(4, crop.getId());
             int result = preparedStatement.executeUpdate();
-            connection.commit();
             return result > 0;
         } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-            return false;
+            throw new RuntimeException(e);
         } finally {
             releaseConnection(connection);
             try {
@@ -142,9 +145,9 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM crop WHERE crop_id = ?");
+            preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_CROP);
             connection.setAutoCommit(false);
-            preparedStatement.setLong(0, crop.getId());
+            preparedStatement.setLong(1, crop.getId());
             int result = preparedStatement.executeUpdate();
             connection.commit();
             return result > 0;
@@ -158,11 +161,13 @@ public class CropDAOImpl extends AbstractDAO implements CropDAO {
         } finally {
             releaseConnection(connection);
             try {
-                preparedStatement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
         }
     }
+
 }

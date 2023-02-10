@@ -13,7 +13,7 @@ public class DBConfigUtil {
 
     static {
         try {
-            props.load(new FileReader("db.properties"));
+            props.load(new FileReader("src/main/resources/db.properties"));
         } catch (FileNotFoundException e) {
             log.error("File was not found", e);
         } catch (IOException e) {
