@@ -7,12 +7,13 @@ import com.solvd.farm.service.CropService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.Random;
 
 public class CropServiceImpl implements CropService {
-    private static final Logger logger = LogManager.getLogger(CropServiceImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(CropServiceImpl.class);
     public Crop growCrop() {
-        String[] names = {"Corn", "Wheat", "Rice", "Barley", "Soybeans"};
+        String[] names = {"Corn", "Wheat", "Rice", "Barley", "Soybeans", "Pumpkin", "Oats"};
         String[] types = {"Grain", "Oilseed", "Pulse"};
         String[] growthStages = {"Spring", "Summer", "Fall", "Winter"};
 
@@ -27,11 +28,36 @@ public class CropServiceImpl implements CropService {
         String randomGrowthStage = growthStages[randomIndex];
 
         Crop crop = new Crop(1, randomName, randomType, randomGrowthStage);
+        Crop crop2 = new Crop(123,"pumpkin","vegetable", "fall");
         CropDAO cropDAO = new CropDAOImpl();
         cropDAO.create(crop);
+        cropDAO.create(crop2);
 
-        logger.info("Crop created");
-        return crop;
+        LOGGER.info("Crop created");
+        return crop2;
     }
+
+    @Override
+    public void viewAllCrops() {
+        CropDAOImpl cropDAOImpl = new CropDAOImpl();
+        List<Crop> crops = cropDAOImpl.getAll();
+        for (Crop crop : crops) {
+            LOGGER.info("Crop ID: " + crop.getId());
+            LOGGER.info("Crop Name: " + crop.getName());
+            LOGGER.info("Crop Variety: " + crop.getVariety());
+            LOGGER.info("Crop Growing Season: " + crop.getGrowingSeason());
+        }
+    }
+
+    @Override
+    public boolean harvestCropById(long id) {
+        CropDAO cropDAO = new CropDAOImpl();
+        Crop crop = cropDAO.getById(id);
+        if (crop != null) {
+            return cropDAO.delete(crop);
+        }
+        return false;
+    }
+
 
 }
