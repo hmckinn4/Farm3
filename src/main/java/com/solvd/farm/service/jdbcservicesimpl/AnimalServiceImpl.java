@@ -1,14 +1,15 @@
 package com.solvd.farm.service.jdbcservicesimpl;
 
-import com.solvd.farm.DAO.AnimalDAO;
-import com.solvd.farm.DAO.jdbcimpl.AnimalDAOImpl;
-import com.solvd.farm.binary.Animal;
-import com.solvd.farm.service.AnimalService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+        import com.solvd.farm.DAO.AnimalDAO;
+        import com.solvd.farm.DAO.jdbcimpl.AnimalDAOImpl;
+        import com.solvd.farm.binary.Animal;
+        import com.solvd.farm.binary.Product;
+        import com.solvd.farm.service.AnimalService;
+        import org.apache.logging.log4j.LogManager;
+        import org.apache.logging.log4j.Logger;
 
-import java.util.List;
-import java.util.Random;
+        import java.util.List;
+        import java.util.Random;
 
 public class AnimalServiceImpl implements AnimalService {
 
@@ -47,13 +48,26 @@ public class AnimalServiceImpl implements AnimalService {
         }
     }
 
-    @Override
+
     public boolean slaughterAnimalById(long id) {
         AnimalDAO animalDAO = new AnimalDAOImpl();
         Animal animal = animalDAO.getById(id);
-        if (animal != null) {
-            return animalDAO.delete(animal);
+
+        if (animal == null) {
+            return false;
         }
-        return false;
+        boolean deleted = animalDAO.delete(animal);
+        if (deleted) {
+            // Create appropriate product
+            ProductServiceImpl productService = new ProductServiceImpl();
+            Product product = productService.createProduct(animal.getType());
+            System.out.println("---------------------------");
+            logger.info("A product was created: " + product.getName());
+            System.out.println("---------------------------");
+        }
+        return deleted;
     }
+
+
+
 }

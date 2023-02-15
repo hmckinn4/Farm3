@@ -6,10 +6,13 @@ public class Product extends BaseEntity{
     private String name;
     private String type;
 
-    public Product(long id, String name, String type) {
+    private int price;
+
+    public Product(long id, String name, String type, int price) {
         super(id);
         this.name = name;
         this.type = type;
+        this.price = price;
     }
 
     public String getName() {
@@ -28,6 +31,16 @@ public class Product extends BaseEntity{
         this.type = type;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    //todo new equals method
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,7 +53,7 @@ public class Product extends BaseEntity{
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, type);
+        return Objects.hash(super.hashCode(), name, type, price);
     }
 
     @Override
@@ -49,6 +62,7 @@ public class Product extends BaseEntity{
                 "id=" + super.getId() +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

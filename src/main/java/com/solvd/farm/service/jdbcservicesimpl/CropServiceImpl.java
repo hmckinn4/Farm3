@@ -28,13 +28,11 @@ public class CropServiceImpl implements CropService {
         String randomGrowthStage = growthStages[randomIndex];
 
         Crop crop = new Crop(1, randomName, randomType, randomGrowthStage);
-        Crop crop2 = new Crop(123,"pumpkin","vegetable", "fall");
         CropDAO cropDAO = new CropDAOImpl();
         cropDAO.create(crop);
-        cropDAO.create(crop2);
 
         LOGGER.info("Crop created");
-        return crop2;
+        return crop;
     }
 
     @Override

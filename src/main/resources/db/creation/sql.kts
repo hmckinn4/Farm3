@@ -205,6 +205,7 @@ COLLATE = utf8mb4_0900_ai_ci;
         `Product_ID` INT NOT NULL AUTO_INCREMENT,
 `Product_Name` VARCHAR(255) NOT NULL,
 `Product_Type` VARCHAR(255) NOT NULL,
+`Product_Price` VARCHAR(255) NOT NULL,
 PRIMARY KEY (`Product_ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
