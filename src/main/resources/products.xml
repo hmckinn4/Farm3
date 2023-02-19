@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product>
+        <id>1</id>
+        <name>Steak</name>
+        <type>Cow</type>
+        <price>50</price>
+    </product>
+    <product>
+        <id>2</id>
+        <name>Pork</name>
+        <type>Pig</type>
+        <price>40</price>
+    </product>
+    <product>
+        <id>3</id>
+        <name>Breast</name>
+        <type>Chicken</type>
+        <price>30</price>
+    </product>
+</products>

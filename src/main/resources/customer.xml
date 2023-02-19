@@ -1,0 +1,14 @@
+<customers>
+    <customer>
+        <id>1</id>
+        <name>John Doe</name>
+        <address>123 Main Street</address>
+        <phone>555-555-5555</phone>
+    </customer>
+    <customer>
+        <id>2</id>
+        <name>Jane Doe</name>
+        <address>456 Oak Avenue</address>
+        <phone>555-555-5556</phone>
+    </customer>
+</customers>

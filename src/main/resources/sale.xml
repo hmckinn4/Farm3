@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sales>
+    <sale>
+        <id>1</id>
+        <productId>1</productId>
+        <customerId>1</customerId>
+        <saleDate>2022-01-01</saleDate>
+        <saleQuantity>10</saleQuantity>
+    </sale>
+    <sale>
+        <id>2</id>
+        <productId>2</productId>
+        <customerId>2</customerId>
+        <saleDate>2022-02-01</saleDate>
+        <saleQuantity>20</saleQuantity>
+    </sale>
+    <sale>
+        <id>3</id>
+        <productId>3</>

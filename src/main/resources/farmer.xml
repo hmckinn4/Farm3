@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<farmers>
+    <farmer>
+        <farmer_id>1</farmer_id>
+        <farmer_name>John Doe</farmer_name>
+        <farmer_address>123 Main St</farmer_address>
+        <farmer_phone>555-555-1212</farmer_phone>
+    </farmer>
+    <farmer>
+        <farmer_id>2</farmer_id>
+        <farmer_name>Jane Doe</farmer_name>
+        <farmer_address>456 Oak Ave</farmer_address>
+        <farmer_phone>555-555-1213</farmer_phone>
+    </farmer>
+</farmers>

@@ -223,7 +223,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 `Sale_Quantity` INT NOT NULL,
 PRIMARY KEY (`Sale_ID`),
 INDEX `Product_ID` (`Product_ID` ASC) VISIBLE,
-INDEX `Customer_ID` (`Customer_ID` ASC) VISIBLE,
+INDEX `Customer_ID`  (`Customer_ID` ASC) VISIBLE,
 CONSTRAINT `sale_ibfk_1`
         FOREIGN KEY (`Product_ID`)
 REFERENCES `FarmDB`.`Product` (`Product_ID`),

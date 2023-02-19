@@ -2,9 +2,11 @@ package com.solvd.farm;
 
 import com.solvd.farm.DAO.jdbcimpl.AnimalDAOImpl;
 import com.solvd.farm.DAO.jdbcimpl.CropDAOImpl;
+import com.solvd.farm.XMLParser.XMLWrapper;
 import com.solvd.farm.binary.Animal;
 import com.solvd.farm.binary.Crop;
 import com.solvd.farm.binary.Farm;
+import com.solvd.farm.binary.Farmer;
 import com.solvd.farm.service.jdbcservicesimpl.AnimalServiceImpl;
 import com.solvd.farm.service.jdbcservicesimpl.CropServiceImpl;
 import com.solvd.farm.service.jdbcservicesimpl.FarmServiceImpl;
@@ -12,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -19,17 +22,13 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-//
-//        LOGGER.info("Starting the FARM program");
-//
-//        Farm farm = new Farm();
-//        FarmServiceImpl farmCreator = new FarmServiceImpl();
-//        boolean result1 = farmCreator.makeFarm(farm);
-//        if (result1) {
-//            LOGGER.info("Welcome to " + farm.getName() + " Farm");
-//        } else {
-//            LOGGER.info("Farm creation failed");
-//        }
+        XMLWrapper xmlWrapper = new XMLWrapper();
+
+        List<Farmer> farmers = xmlWrapper.parseXML("path/to/farmer.xml");
+
+        for (Farmer farmer : farmers) {
+            System.out.println(farmer);
+        }
 
 
         LOGGER.info("Starting the FARM program");
