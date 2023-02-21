@@ -1,7 +1,6 @@
 package com.solvd.farm.XMLParser;
 
 import com.solvd.farm.binary.Farmer;
-import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -16,7 +15,7 @@ public class XMLWrapper <T> {
         try {
             XMLReader reader = XMLReaderFactory.createXMLReader();
             FarmerXMLReader handler = new FarmerXMLReader();
-            reader.setContentHandler((ContentHandler) handler);
+            reader.setContentHandler(handler);
             reader.parse(fileName);
             farmers = handler.getEnts();
         } catch (SAXException | IOException e) {

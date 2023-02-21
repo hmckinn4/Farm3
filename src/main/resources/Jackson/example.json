@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Green Pastures",
+    "address": "123 Main St",
+    "phone": "555-555-1212",
+    "animals": [
+      {
+        "name": "Bessie",
+        "type": "cow",
+        "breed": "Holstein"
+      },
+      {
+        "name": "Daisy",
+        "type": "chicken",
+        "breed": "Rhode Island Red"
+      }
+    ],
+    "crops": [
+      {
+        "name": "corn",
+        "variety": "Yellow",
+        "growingSeason": "summer"
+      },
+      {
+        "name": "wheat",
+        "variety": "Soft White",
+        "growingSeason": "spring"
+      }
+    ]
+  },
+  {
+    "name": "Happy Acres",
+    "address": "456 Elm St",
+    "phone": "555-555-1212",
+    "animals": [
+      {
+        "name": "Charlie",
+        "type": "horse",
+        "breed": "Mustang"
+      },
+      {
+        "name": "Molly",
+        "type": "goat",
+        "breed": "Nubian"
+      }
+    ],
+    "crops": [
+      {
+        "name": "soybeans",
+        "variety": "Glycine max",
+        "growingSeason": "summer"
+      },
+      {
+        "name": "oats",
+        "variety": "Avena sativa",
+        "growingSeason": "spring"
+      }
+    ]
+  }
+]
