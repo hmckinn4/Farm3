@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.farm.dao.FarmDAO">
+
+    <sql id="body">
+        f.Farm_ID as farm_id,
+        f.Farm_Name as farm_name,
+        f.Farm_Address as farm_address,
+        f.Farm_Phone as farm_phone
+    </sql>
+
+    <select id="getById" resultMap="farmResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM
+        FarmDB.Farm f
+        WHERE Farm_ID = #{id}
+    </select>
+
+    <resultMap id="farmResultMap" type="com.solvd.farm.binary.Farm" autoMapping="false">
+        <id column="farm_id" property="id"/>
+        <result column="farm_name" property="name"/>
+        <result column="farm_address" property="address"/>
+        <result column="farm_phone" property="phone"/>
+    </resultMap>
+</mapper>
