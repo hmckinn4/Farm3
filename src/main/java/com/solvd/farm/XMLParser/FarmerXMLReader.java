@@ -9,26 +9,50 @@ import org.xml.sax.SAXException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FarmerXMLReader implements XMLReader, ContentHandler {
+public class FarmerXMLReader implements ContentHandler {
     private List<Farmer> farmers;
     private Farmer farmer;
     private StringBuilder content;
 
-    @Override
-    public List <Farmer> getEnts() {
+    public FarmerXMLReader() {
+        farmers = new ArrayList<>();
+    }
+
+    public List<Farmer> getEnts() {
         return farmers;
     }
 
     @Override
+    public void setDocumentLocator(Locator locator) {
+
+    }
+
+    @Override
+    public void startDocument() throws SAXException {
+
+    }
+
+    @Override
+    public void endDocument() throws SAXException {
+
+    }
+
+    @Override
+    public void startPrefixMapping(String prefix, String uri) throws SAXException {
+
+    }
+
+    @Override
+    public void endPrefixMapping(String prefix) throws SAXException {
+
+    }
+
+    @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        {
-            switch (qName) {
-                case "farmer":
-                    farmer = new Farmer(1, "", "", "");
-                    break;
-            }
-            content = new StringBuilder();
+        if (qName.equals("farmer")) {
+            farmer = new Farmer(1, "", "", "");
         }
+        content = new StringBuilder();
     }
 
     @Override
@@ -53,44 +77,16 @@ public class FarmerXMLReader implements XMLReader, ContentHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        switch (qName) {
-            case "farmer":
-                farmers.add(farmer);
-                break;
-            case "farmer_name":
-                farmer.setName(content.toString());
-                break;
-            case "farmer_address":
-                farmer.setAddress(content.toString());
-                break;
-            case "farmer_phone":
-                farmer.setPhone(content.toString());
-                break;
+        if (qName.equals("farmer")) {
+            farmers.add(farmer);
+        } else if (qName.equals("farmer_name")) {
+            farmer.setName(content.toString());
+        } else if (qName.equals("farmer_address")) {
+            farmer.setAddress(content.toString());
+        } else if (qName.equals("farmer_phone")) {
+            farmer.setPhone(content.toString());
         }
     }
 
-    @Override
-    public void setDocumentLocator(Locator locator) {
-
-    }
-
-    @Override
-    public void startDocument() throws SAXException {
-        farmers = new ArrayList<>();
-    }
-
-    @Override
-    public void endDocument() throws SAXException {
-
-    }
-
-    @Override
-    public void startPrefixMapping(String prefix, String uri) throws SAXException {
-
-    }
-
-    @Override
-    public void endPrefixMapping(String prefix) throws SAXException {
-
-    }
+    // other methods omitted for brevity
 }

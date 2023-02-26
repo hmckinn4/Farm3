@@ -24,7 +24,7 @@ public class Main {
     public static void main(String[] args) {
         XMLWrapper xmlWrapper = new XMLWrapper();
 
-        List<Farmer> farmers = xmlWrapper.parseXML("path/to/farmer.xml");
+        List<Farmer> farmers = xmlWrapper.parseXML("src/main/resources/farmer.xml");
 
         for (Farmer farmer : farmers) {
             System.out.println(farmer);
