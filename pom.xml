@@ -14,10 +14,30 @@
           <target>17</target>
         </configuration>
       </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.2.0</version>
+            <executions>
+                <execution>
+                    <id>analyze</id>
+                    <goals>
+                        <goal>analyze-only</goal>
+                    </goals>
+                    <configuration>
+                        <failOnWarning>true</failOnWarning>
+                        <outputFile>dependency-analysis-report.txt</outputFile>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
     </plugins>
   </build>
 
-  <dependencies>
+  <!-- Dependencies go here -->
+<dependencies>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
@@ -64,5 +84,31 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.32</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.qaprosoft</groupId>
+      <artifactId>carina-core</artifactId>
+      <version>8.0.6</version>
+    </dependency>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.4.0</version>
+      </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20210307</version>
+    </dependency>
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.0.3</version>
+      </dependency>
   </dependencies>
 </project>

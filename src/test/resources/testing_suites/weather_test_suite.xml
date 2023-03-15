@@ -1,0 +1,7 @@
+<suite name="WeatherTestSuite" parallel="tests" thread-count="5">
+    <test name="WeatherTest">
+        <classes>
+            <class name="com.solvd.farm.APIWeatherTest"/>
+        </classes>
+    </test>
+</suite>
