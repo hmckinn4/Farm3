@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="YahooFinanceWebAutomationSuite">
+    <test name="FC001_CreateAndManageWatchlist">
+        <classes>
+            <class name="com.solvd.farm.YahooFinanceTests" />
+        </classes>
+    </test>
+    <test name="FC002_ViewDetailedStockPerformance">
+        <classes>
+            <class name="com.solvd.farm.YahooFinanceTests" />
+        </classes>
+    </test>
+    <test name="FC003_CreateAndManagePortfolio">
+        <classes>
+            <class name="com.solvd.farm.YahooFinanceTests" />
+        </classes>
+    </test>
+    <test name="FC004_ViewFinancialNewsArticles">
+        <classes>
+            <class name="com.solvd.farm.YahooFinanceTests" />
+        </classes>
+    </test>
+    <test name="FC005_ExportPortfolioAsCSV">
+        <classes>
+            <class name="com.solvd.farm.YahooFinanceTests" />
+        </classes>
+    </test>
+</suite>

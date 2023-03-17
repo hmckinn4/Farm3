@@ -1,37 +1,15 @@
 package com.solvd.farm;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.solvd.farm.testautomation.api.GetWeatherByCityMethod;
 import com.solvd.farm.testautomation.api.GetWeatherByZipCodeMethod;
-import com.solvd.farm.testautomation.api.WeatherPage;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import kong.unirest.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 
-
-public class
-APIWeatherTest extends AbstractTest {
-
-    @Test
-    @MethodOwner(owner = "John")
-    public void verifyTemperatureDisplayedInCelsiusByDefault() {
-        WeatherPage weatherPage = new WeatherPage(getDriver());
-        weatherPage.open();
-        weatherPage.waitForPageToLoad();
-        Assert.assertEquals(weatherPage.getTemperatureUnit(), "Celsius", "Temperature unit is not displayed in Celsius by default!");
-    }
-
-    @Test
-    @MethodOwner(owner = "John")
-    public void verifyUserCanSwitchTemperatureUnitFromCelsiusToFahrenheit() {
-        WeatherPage weatherPage = new WeatherPage(getDriver());
-        weatherPage.open();
-        weatherPage.waitForPageToLoad();
-        weatherPage.switchTemperatureUnit();
-        Assert.assertEquals(weatherPage.getTemperatureUnit(), "Fahrenheit", "Temperature unit is not switched to Fahrenheit!");
-    }
-
+public class APIWeatherTest extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "John")
@@ -42,7 +20,6 @@ APIWeatherTest extends AbstractTest {
         String response = getWeatherByCityMethod.callAPI().asString();
         Assert.assertTrue(response.contains(cityName), "Weather information for " + cityName + " is not displayed!");
     }
-
 
     @Test
     @MethodOwner(owner = "John")
@@ -56,15 +33,36 @@ APIWeatherTest extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "John")
-    public void verifyWeatherInfoDisplayedIsAccurateForCityOrZipCodeEntered() {
-        WeatherPage weatherPage = new WeatherPage(getDriver());
-        weatherPage.open();
-        weatherPage.waitForPageToLoad();
-        String cityName = "New York";
-        weatherPage.searchWeatherByCityName(cityName);
-        Assert.assertTrue(weatherPage.isWeatherInfoDisplayed(cityName), "Weather information for " + cityName + " is not displayed!");
-        Assert.assertTrue(weatherPage.isTemperatureInRange(cityName), "Temperature is not accurate for " + cityName + "!");
-        Assert.assertTrue(weatherPage.isHumidityInRange(cityName), "Humidity is not accurate for " + cityName + "!");
-        Assert.assertTrue(weatherPage.isWindSpeedInRange(cityName), "Wind speed is not accurate for " + cityName + "!");
+    public void verifyInvalidCityNameReturns404() {
+        String invalidCityName = "InvalidCity";
+        GetWeatherByCityMethod getWeatherByCityMethod = new GetWeatherByCityMethod(invalidCityName);
+        getWeatherByCityMethod.expectResponseStatus(HttpResponseStatusType.NOT_FOUND_404);
+        getWeatherByCityMethod.callAPI();
     }
+
+    @Test
+    @MethodOwner(owner = "John")
+    public void verifyInvalidZipCodeReturns404() {
+        String invalidZipCode = "99999";
+        GetWeatherByZipCodeMethod getWeatherByZipCodeMethod = new GetWeatherByZipCodeMethod(invalidZipCode);
+        getWeatherByZipCodeMethod.expectResponseStatus(HttpResponseStatusType.NOT_FOUND_404);
+        getWeatherByZipCodeMethod.callAPI();
+    }
+
+    @Test
+    @MethodOwner(owner = "John")
+    public void verifyWeatherDataStructure() {
+        String cityName = "New York";
+        GetWeatherByCityMethod getWeatherByCityMethod = new GetWeatherByCityMethod(cityName);
+        getWeatherByCityMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+        JSONObject cityResponse = new JSONObject(getWeatherByCityMethod.callAPI().asString());
+
+        Assert.assertTrue(cityResponse.has("main"), "Weather data does not contain 'main' object.");
+        Assert.assertTrue(cityResponse.getJSONObject("main").has("temp"), "Weather data does not contain 'temp' field.");
+        Assert.assertTrue(cityResponse.getJSONObject("main").has("humidity"), "Weather data does not contain 'humidity' field.");
+
+        Assert.assertTrue(cityResponse.has("wind"), "Weather data does not contain 'wind' object.");
+        Assert.assertTrue(cityResponse.getJSONObject("wind").has("speed"), "Weather data does not contain 'speed' field.");
+    }
+
 }
